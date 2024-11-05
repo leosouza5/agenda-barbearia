@@ -27,4 +27,5 @@ O público-alvo deste projeto são barbearias de pequeno porte.
    ```
 
 ### Iniciando o projeto
-https://github.com/user-attachments/assets/00c4034c-20f7-4e25-a654-8b9daee42378
+
+![DER](https://github.com/user-attachments/assets/da967335-a455-4798-b296-6cd68f0c8ef3)
