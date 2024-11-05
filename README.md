@@ -25,3 +25,7 @@ O público-alvo deste projeto são barbearias de pequeno porte.
    ```bash
    cd agenda-barbearia
    ```
+
+### Iniciando o projeto
+
+![DER](https://github.com/user-attachments/assets/da967335-a455-4798-b296-6cd68f0c8ef3)
