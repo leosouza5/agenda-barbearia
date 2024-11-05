@@ -1,24 +1,27 @@
 <?php
 
 namespace App\Router;
-
-
-class Router{
+class Router
+{
     private $routes = [];
-    
-    public function add($path,$callback){
-        $this->routes[$path] = $callback;
+
+    public function add($method, $path, $callback)
+    {
+        $path = preg_replace('/\{(\w+)\}/', '(\d+)', $path);
+        $this->routes[] = ['method' => $method, 'path' => "#^" . $path . "$#", 'callback' => $callback];
     }
 
+    public function dispatch($requestedPath)
+    {
+        print_r($this->routes);
+        $requestedMethod = $_SERVER["REQUEST_METHOD"];
 
-    public function dispatch($requestedPath){
-        foreach($this->routes as $path=>$callback){
-            if($path ===$requestedPath){
-
-                return call_user_func($callback);
-            }else{
-                
+        foreach ($this->routes as $route) {
+            if ($route['method'] === $requestedMethod && preg_match($route['path'], $requestedPath, $matches)) {
+                array_shift($matches);
+                return call_user_func($route['callback'], $matches[0]);
             }
         }
+        echo "404 - Página não encontrada";
     }
 }
