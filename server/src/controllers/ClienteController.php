@@ -15,15 +15,15 @@ class ClienteController
     public function list()
     {
         $clientes = $this->cliente->list();
-        // echo json_encode($clientes);
+        echo json_encode($clientes);
     }
 
     public function create()
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($data->name) && isset($data->email)) {
+        if (isset($data->nome) && isset($data->telefone)) {
             try {
-                $this->cliente->create($data->name, $data->email);
+                $this->cliente->create($data->nome, $data->telefone);
 
                 http_response_code(201);
                 echo json_encode(["message" => "Usuário criado com sucesso."]);
@@ -39,11 +39,12 @@ class ClienteController
 
     public function getById($id)
     {
+        // print_r($id);
         if (isset($id)) {
             try {
-                $cliente = $this->cliente->getById($id);
+                $cliente = $this->cliente->getById($id[0]);
                 if ($cliente) {
-                    // echo json_encode($cliente);
+                    echo json_encode($cliente);
                 } else {
                     http_response_code(404);
                     echo json_encode(["message" => "Usuário não encontrado."]);
@@ -61,9 +62,9 @@ class ClienteController
     public function update($id)
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($id) && isset($data->name) && isset($data->email)) {
+        if (isset($id) && isset($data->nome) && isset($data->telefone)) {
             try {
-                $count = $this->cliente->update($id, $data->name, $data->email);
+                $count = $this->cliente->update($id[0], $data->nome, $data->telefone);
                 if ($count > 0) {
                     http_response_code(200);
                     echo json_encode(["message" => "Usuário atualizado com sucesso."]);
@@ -86,7 +87,7 @@ class ClienteController
         $data = json_decode(file_get_contents("php://input"));
         if (isset($id)) {
             try {
-                $count = $this->cliente->delete($id);
+                $count = $this->cliente->delete($id[0]);
 
                 if ($count > 0) {
                     http_response_code(200);

@@ -13,13 +13,15 @@ class Router
 
     public function dispatch($requestedPath)
     {
-        print_r($this->routes);
         $requestedMethod = $_SERVER["REQUEST_METHOD"];
 
+        
+        // print_r($this->routes);
+        // print_r($requestedPath);
         foreach ($this->routes as $route) {
             if ($route['method'] === $requestedMethod && preg_match($route['path'], $requestedPath, $matches)) {
                 array_shift($matches);
-                return call_user_func($route['callback'], $matches[0]);
+                return call_user_func($route['callback'], $matches);
             }
         }
         echo "404 - Página não encontrada";

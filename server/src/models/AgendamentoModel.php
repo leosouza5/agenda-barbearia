@@ -11,18 +11,19 @@ class AgendamentoModel{
         $this->conn = $db;
     }
 
-    public function create($data, $hora)
+    public function create($data, $hora,$idCliente)
     {
-        $sql = "INSERT INTO tb_agendamento (data,hora) VALUES (:data, :hora)";
+        $sql = "INSERT INTO tb_agendamento (data,hora,id_cliente) VALUES (:data, :hora, :idCliente)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':data', $data);
         $stmt->bindParam(':hora', $hora);
+        $stmt->bindParam(':idCliente', $idCliente);
         return $stmt->execute();
     }
 
     public function list()
     {
-        $sql = "SELECT id, hora FROM tb_agendamento";
+        $sql = "SELECT * FROM tb_agendamento";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +38,7 @@ class AgendamentoModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $data, $hora)
+    public function update($id, $data, $hora,$idCliente)
     {
         $sql = "UPDATE tb_agendamento SET data = :data, hora = :hora WHERE id = :id";
         $stmt = $this->conn->prepare($sql);

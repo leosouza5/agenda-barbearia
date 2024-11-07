@@ -15,21 +15,21 @@ class AgendamentoController
     public function list()
     {
         $agendamentos = $this->agendamento->list();
-        // echo json_encode($agendamentos);
+        echo json_encode($agendamentos);
     }
 
     public function create()
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($data->name) && isset($data->email)) {
+        if (isset($data->data) && isset($data->hora) && isset($data->id_cliente)) {
             try {
-                $this->agendamento->create($data->name, $data->email);
+                $this->agendamento->create($data->data, $data->hora,$data->id_cliente);
 
                 http_response_code(201);
-                echo json_encode(["message" => "Usuário criado com sucesso."]);
+                echo json_encode(["message" => "Agendamento criado com sucesso."]);
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao criar o usuário."]);
+                echo json_encode(["message" => "Erro ao criar o Agendamento."]);
             }
         } else {
             http_response_code(400);
@@ -41,16 +41,16 @@ class AgendamentoController
     {
         if (isset($id)) {
             try {
-                $agendamento = $this->agendamento->getById($id);
+                $agendamento = $this->agendamento->getById($id[0]);
                 if ($agendamento) {
-                    // echo json_encode($agendamento);
+                    echo json_encode($agendamento);
                 } else {
                     http_response_code(404);
-                    echo json_encode(["message" => "Usuário não encontrado."]);
+                    echo json_encode(["message" => "Agendamento não encontrado."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao buscar o usuário."]);
+                echo json_encode(["message" => "Erro ao buscar o Agendamento."]);
             }
         } else {
             http_response_code(400);
@@ -61,19 +61,19 @@ class AgendamentoController
     public function update($id)
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($id) && isset($data->name) && isset($data->email)) {
+        if (isset($data->data) && isset($data->hora) && isset($data->id_cliente)) {
             try {
-                $count = $this->agendamento->update($id, $data->name, $data->email);
+                $count = $this->agendamento->update($id[0], $data->data, $data->hora,$data->id_cliente);
                 if ($count > 0) {
                     http_response_code(200);
-                    echo json_encode(["message" => "Usuário atualizado com sucesso."]);
+                    echo json_encode(["message" => "Agendamento atualizado com sucesso."]);
                 } else {
                     http_response_code(500);
-                    echo json_encode(["message" => "Erro ao atualizar o usuário."]);
+                    echo json_encode(["message" => "Erro ao atualizar o Agendamento."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao atualizar o usuário."]);
+                echo json_encode(["message" => "Erro ao atualizar o Agendamento."]);
             }
         } else {
             http_response_code(400);
@@ -86,18 +86,18 @@ class AgendamentoController
         $data = json_decode(file_get_contents("php://input"));
         if (isset($id)) {
             try {
-                $count = $this->agendamento->delete($id);
+                $count = $this->agendamento->delete($id[0]);
 
                 if ($count > 0) {
                     http_response_code(200);
-                    echo json_encode(["message" => "Usuário deletado com sucesso."]);
+                    echo json_encode(["message" => "Agendamento deletado com sucesso."]);
                 } else {
                     http_response_code(500);
-                    echo json_encode(["message" => "Erro ao deletar o usuário."]);
+                    echo json_encode(["message" => "Erro ao deletar o Agendamento."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao deletar o usuário."]);
+                echo json_encode(["message" => "Erro ao deletar o Agendamento."]);
             }
         } else {
             http_response_code(400);
