@@ -118,14 +118,13 @@ O público-alvo deste projeto são barbearias de pequeno porte.
 - **Parâmetros:** :
 id (int): ID do agendamento
 - **Body esperado:**:
-json
-Copiar código
-{
-  "cliente_id": "ID do cliente",
-  "data": "Data atualizada do agendamento",
-  "horario": "Horário atualizado do agendamento",
-  "observacoes": "Observações atualizadas do agendamento"
-}
+   ```json
+      {
+        "cliente_id": "ID do cliente",
+        "data": "Data atualizada do agendamento",
+        "horario": "Horário atualizado do agendamento",
+        "observacoes": "Observações atualizadas do agendamento"
+      }
 ### Deletar Agendamento
 - **Método:** DELETE
 - **Rota:** `/agendamento/{id}`
