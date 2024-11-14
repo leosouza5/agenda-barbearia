@@ -1,0 +1,50 @@
+body {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('images/fundo.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+.container {
+  max-width: 600px;
+  margin-top: 30px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.appointment-card {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card h5 {
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.appointment-card p {
+  color: #6c757d;
+  margin: 0;
+}
+
+.btn-custom {
+  background-color: #343a40;
+  color: white;
+  margin-top: 20px;
+}
+
+.btn-custom:hover {
+  background-color: #495057;
+}

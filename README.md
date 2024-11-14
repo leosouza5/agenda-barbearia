@@ -106,8 +106,7 @@ O público-alvo deste projeto são barbearias de pequeno porte.
     {
       "cliente_id": "ID do cliente",
       "data": "Data do agendamento",
-      "horario": "Horário do agendamento",
-      "observacoes": "Observações do agendamento"
+      "horario": "Horário do agendamento"
     }
 
 

@@ -8,6 +8,8 @@ use App\Router\Router;
 
 require_once './config/db.php';
 header("Content-type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 $router = new Router();
 $agendamentoController = new AgendamentoController($pdo);
 $clienteController = new ClienteController($pdo);

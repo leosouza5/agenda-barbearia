@@ -23,7 +23,7 @@ class AgendamentoModel{
 
     public function list()
     {
-        $sql = "SELECT * FROM tb_agendamento";
+        $sql = "SELECT ag.id,ag.status,ag.data,ag.hora, cl.nome FROM tb_agendamento ag LEFT JOIN tb_cliente cl on cl.id = ag.id_cliente ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
